@@ -3,6 +3,7 @@ package guru.springframework.examplebeans;
 public class FakeDataSource {
 
 	private String user;
+	private String env_username;
 	private String password;
 	private String dbUrl;
 
@@ -30,9 +31,19 @@ public class FakeDataSource {
 		this.dbUrl = dbUrl;
 	}
 
+	public String getEnv_username() {
+		return env_username;
+	}
+
+	public void setEnv_username(String env_username) {
+		this.env_username = env_username;
+	}
+
 	@Override
 	public String toString() {
-		return "FakeDataSource [user=" + user + ", password=" + password + ", dbUrl=" + dbUrl + "]";
+		return "FakeDataSource [user=" + user + ", env_username=" + env_username + ", password=" + password + ", dbUrl="
+				+ dbUrl + "]";
 	}
+
 
 }
