@@ -6,6 +6,7 @@ import guru.springframework.controllers.MyController;
 import guru.springframework.controllers.PropertyInjectedController;
 import guru.springframework.examplebeans.FakeDataSource;
 import guru.springframework.examplebeans.FakeJmsSource;
+import guru.springframework.examplebeans.Pagesize;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,5 +31,8 @@ public class DiDemoApplication {
 		
 		FakeJmsSource fjs = (FakeJmsSource) ctx.getBean(FakeJmsSource.class);
 		System.out.println(fjs);
+		
+		Pagesize ps = (Pagesize) ctx.getBean(Pagesize.class);
+		System.out.println(ps);
 	}
 }

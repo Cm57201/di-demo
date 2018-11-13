@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 
 import guru.springframework.examplebeans.FakeDataSource;
 import guru.springframework.examplebeans.FakeJmsSource;
+import guru.springframework.examplebeans.Pagesize;
 
 @Configuration
 //@PropertySource({"classpath:datasource.properties", "classpath:jms.properties"})
@@ -42,6 +43,9 @@ public class PropertyConfig {
 	@Value("${guru.jms.url}")
 	String jmsUrl;
 	
+	@Value("${test.pagesize}")
+	String pagesize;
+	
 	@Bean
 	public FakeDataSource fakeDataSource() {
 		FakeDataSource fakeDataSource = new FakeDataSource();
@@ -59,6 +63,13 @@ public class PropertyConfig {
 		fjs.setPassword(jmsPassword);
 		fjs.setDbUrl(jmsUrl);
 		return fjs;
+	}
+	
+	@Bean
+	public Pagesize pageSize() {
+		Pagesize ps = new Pagesize();
+		ps.setPagesize(pagesize);
+		return ps;
 	}
 	
 	@Bean
