@@ -5,6 +5,7 @@ import guru.springframework.controllers.GetterInjectedController;
 import guru.springframework.controllers.MyController;
 import guru.springframework.controllers.PropertyInjectedController;
 import guru.springframework.examplebeans.FakeDataSource;
+import guru.springframework.examplebeans.FakeJmsSource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,5 +27,8 @@ public class DiDemoApplication {
 		FakeDataSource fds = (FakeDataSource) ctx.getBean(FakeDataSource.class);
 		
 		System.out.println(fds);
+		
+		FakeJmsSource fjs = (FakeJmsSource) ctx.getBean(FakeJmsSource.class);
+		System.out.println(fjs);
 	}
 }

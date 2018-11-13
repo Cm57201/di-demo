@@ -5,13 +5,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
 import guru.springframework.examplebeans.FakeDataSource;
+import guru.springframework.examplebeans.FakeJmsSource;
 
 @Configuration
-@PropertySource("classpath:datasource.properties")
+//@PropertySource({"classpath:datasource.properties", "classpath:jms.properties"})
+@PropertySources({
+	@PropertySource("classpath:datasource.properties"),
+	@PropertySource("classpath:jms.properties")
+})
 public class PropertyConfig {
 
 	/* Will bring back os environment variables*/
@@ -27,6 +33,15 @@ public class PropertyConfig {
 	@Value("${guru.dburl}")
 	String dbUrl;
 	
+	@Value("${guru.jms.username}")
+	String jmsUser;
+	
+	@Value("${guru.jms.password}")
+	String jmsPassword;
+	
+	@Value("${guru.jms.url}")
+	String jmsUrl;
+	
 	@Bean
 	public FakeDataSource fakeDataSource() {
 		FakeDataSource fakeDataSource = new FakeDataSource();
@@ -35,6 +50,15 @@ public class PropertyConfig {
 		fakeDataSource.setDbUrl(dbUrl);
 		fakeDataSource.setEnv_username(env.getProperty("username"));
 		return fakeDataSource;
+	}
+	
+	@Bean
+	public FakeJmsSource fakeJmsBroker() {
+		FakeJmsSource fjs = new FakeJmsSource();
+		fjs.setUser(jmsUser);
+		fjs.setPassword(jmsPassword);
+		fjs.setDbUrl(jmsUrl);
+		return fjs;
 	}
 	
 	@Bean
