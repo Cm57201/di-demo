@@ -3,3 +3,21 @@ guru:
     username: jmsuser
     password: jmspassword
     url: jmsurl
+    
+---
+#File Separator. In .properties we need new files. in yaml we need only one file.
+spring:
+  profiles:de
+
+guru:
+  jms:
+    username: jmsuser**in**german    
+    
+    
+---
+spring:
+  profiles:en
+  
+guru:
+  jms:
+    username: jmsuser**in**english    
